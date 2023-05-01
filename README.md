@@ -52,7 +52,7 @@ The script will ask you to choose between two modes:
 1. **Search and scrape**: The script will search the web for a given term, scrape content from the top 5 unique URLs, summarize the findings, and generate a description using OpenAI's GPT-3 API.
 2. **Read from summary.txt**: The script will only read the content from `summary.txt` and generate a description using OpenAI's GPT-3 API.
 
-**It is possible, that the results of web searches due to unrecognized formatting won't give meaningful output, however the links provided usually appear valid. On this occasion, copy and paste manually relevant descriptions found on the web (it should not be longer than 300-400 words) and paste into summary.txt, then run the scrip again choosing option 2.**
+**It is possible, that the results of web searches due to unrecognized formatting won't give meaningful output, however the links provided usually appear valid. On this occasion, copy and paste manually relevant descriptions found on the web (it should not be longer than 300-400 words) and paste into summary.txt, then run the script again choosing option 2.**
 
 The generated description, along with the URLs used (if any), will be saved in the `description.txt` file.
 
