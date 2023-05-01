@@ -66,4 +66,4 @@ This project is licensed under the [GPL 3.0 License](https://www.gnu.org/license
 
 ## Contributing
 
-I welcome your comments, suggestions, and contributions! Please feel free to open an issue or submit a pull request with your improvements or ideas.
+Your comments, suggestions, and contributions are welcomed! Please feel free to open an issue or submit a pull request with your improvements or ideas.
