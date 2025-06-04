@@ -1,5 +1,6 @@
 import configparser
 from collections import Counter
+import os
 
 import nltk.data
 import openai
@@ -15,8 +16,10 @@ except LookupError:
     nltk.download('punkt')
 
 # Load the API keys and CSE ID from the config.ini file
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+
 config = configparser.ConfigParser()
-config.read('config.ini')
+config.read(os.path.join(BASE_DIR, 'config.ini'))
 
 openai_api_key = config.get('openai', 'api_key')
 engine = config.get('openai', 'engine')
@@ -52,7 +55,8 @@ def scrape_and_save(urls):
         except Exception as e:
             print(f"Error scraping URL {url}: {e}")
 
-    with open('summary.txt', 'w') as f:
+    summary_path = os.path.join(BASE_DIR, 'summary.txt')
+    with open(summary_path, 'w') as f:
         f.write(content)
 
 
@@ -104,7 +108,8 @@ def main():
         print("Searching...", urls)
         scrape_and_save(urls)
 
-        with open('summary.txt', 'r') as f:
+        summary_path = os.path.join(BASE_DIR, 'summary.txt')
+        with open(summary_path, 'r') as f:
             summary_content = f.read()
 
         # Summarize the content of summary.txt
@@ -112,18 +117,21 @@ def main():
         summary_content = summarize_findings(summary_content)
 
         # Save the summarized content back to summary.txt
-        with open('summary.txt', 'w') as f:
+        summary_path = os.path.join(BASE_DIR, 'summary.txt')
+        with open(summary_path, 'w') as f:
             f.write(summary_content)
 
     elif mode == '2':
-        with open('summary.txt', 'r') as f:
+        summary_path = os.path.join(BASE_DIR, 'summary.txt')
+        with open(summary_path, 'r') as f:
             summary_content = f.read()
 
     else:
         print("Invalid mode selected. Exiting.")
         return
 
-    with open('prompt.txt', 'r') as f:
+    prompt_path = os.path.join(BASE_DIR, 'prompt.txt')
+    with open(prompt_path, 'r') as f:
         prompt_content = f.read()
 
     # Create a variable consisting of the content of prompt.txt and summary.txt, connected with \n\n
@@ -141,7 +149,8 @@ def main():
         description_with_urls = f"{description}\n\nNo URLs were used."
 
     # Save the whole response with URLs to description.txt
-    with open('description.txt', 'w') as f:
+    description_path = os.path.join(BASE_DIR, 'description.txt')
+    with open(description_path, 'w') as f:
         f.write(description_with_urls)
     print("Please find the response in description.txt.\nThank you!")
 
